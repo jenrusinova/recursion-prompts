@@ -74,11 +74,56 @@ var isEven = function(n) {
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+  var isPositive = false;
+
+  if (n > 0){
+  isPositive = true;
+  } else {
+    n = n * -1;
+  }
+
+ //base case
+  if (n === 0){
+    return 0;
+  }
+  if (isPositive){
+    return n - 1 + sumBelow(n - 1);
+  } else {
+      return (n - 1 + sumBelow(n - 1) ) * -1;
+  }
+
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  //edge case
+  if (x === y){
+    return [];
+  }
+  if (x + 1 === y || x - 1 === y){
+    return [];
+  }
+  if (x < y){
+    //base case
+ if (x - y === 2){
+   return [x + 1];
+ } else {
+   var list = range (x, y - 1);
+   list.push(y - 1);
+   return list;
+ }
+
+} else {
+  //base case
+  if (x - y === 2){
+    return [x - 1];
+} else {
+  var list = range (x, y + 1);
+  list.push(y + 1);
+  return list;
+}
+}
 };
 
 // 7. Compute the exponent of a number.
